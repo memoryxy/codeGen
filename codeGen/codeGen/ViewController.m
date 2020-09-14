@@ -45,6 +45,8 @@
                 temp = [temp stringByAppendingFormat:@"@property (nonatomic, assign) BOOL %@;\n", key];
             } else if ([v isKindOfClass:intCls]) {
                 temp = [temp stringByAppendingFormat:@"@property (nonatomic, assign) NSInteger %@;\n", key];
+            } else if ([v isKindOfClass:NSDictionary.class]) {
+                temp = [temp stringByAppendingFormat:@"@property (nonatomic, strong) <#Class#> %@;\n", key];
             } else {
                 NSAssert(NO, @"Format can't be parsed!");
             }
