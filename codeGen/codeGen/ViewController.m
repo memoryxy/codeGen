@@ -17,10 +17,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"mockData" ofType:@"json"] encoding:NSUTF8StringEncoding error:nil];
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:[str dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+    NSString *strInFile = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"mockData" ofType:@"json"] encoding:NSUTF8StringEncoding error:nil];
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:[strInFile dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
     NSString *result = @"\n";
-    NSArray *splitedAr = [str componentsSeparatedByString:@"\n"];
+    NSArray *splitedAr = [strInFile componentsSeparatedByString:@"\n"];
         
     for (NSString *str in splitedAr) {
         NSArray *splitedByQuote = [str componentsSeparatedByString:@"\""];
@@ -47,6 +47,8 @@
                 temp = [temp stringByAppendingFormat:@"@property (nonatomic, assign) NSInteger %@;\n", key];
             } else if ([v isKindOfClass:NSDictionary.class]) {
                 temp = [temp stringByAppendingFormat:@"@property (nonatomic, strong) <#Class#> %@;\n", key];
+            } else if ([v isKindOfClass:NSArray.class]) {
+                temp = [temp stringByAppendingFormat:@"@property (nonatomic, copy) NSArray<<#Class#>> *%@;\n", key];
             } else {
                 NSAssert(NO, @"Format can't be parsed!");
             }
