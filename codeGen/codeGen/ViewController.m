@@ -40,15 +40,15 @@
 
             NSString *temp = @"";
             if ([v isKindOfClass:NSString.class]) {
-                temp = [temp stringByAppendingFormat:@"@property (nonatomic, copy) NSString *%@;\n", key];
+                temp = [temp stringByAppendingFormat:@"///\n@property (nonatomic, copy) NSString *%@;\n", key];
             } else if ([v isKindOfClass:boolCls]) {
-                temp = [temp stringByAppendingFormat:@"@property (nonatomic, assign) BOOL %@;\n", key];
+                temp = [temp stringByAppendingFormat:@"///\n@property (nonatomic, assign) BOOL %@;\n", key];
             } else if ([v isKindOfClass:intCls]) {
-                temp = [temp stringByAppendingFormat:@"@property (nonatomic, assign) NSInteger %@;\n", key];
+                temp = [temp stringByAppendingFormat:@"///\n@property (nonatomic, assign) NSInteger %@;\n", key];
             } else if ([v isKindOfClass:NSDictionary.class]) {
-                temp = [temp stringByAppendingFormat:@"@property (nonatomic, strong) <#Class#> %@;\n", key];
+                temp = [temp stringByAppendingFormat:@"///\n@property (nonatomic, strong) <#Class#> %@;\n", key];
             } else if ([v isKindOfClass:NSArray.class]) {
-                temp = [temp stringByAppendingFormat:@"@property (nonatomic, copy) NSArray<<#Class#>> *%@;\n", key];
+                temp = [temp stringByAppendingFormat:@"///\n@property (nonatomic, copy) NSArray<<#Class *#>> *%@;\n", key];
             } else {
                 NSAssert(NO, @"Format can't be parsed!");
             }
@@ -61,6 +61,5 @@
     
     NSLog(@"%@", result);
 }
-
 
 @end
