@@ -46,7 +46,7 @@
             } else if ([v isKindOfClass:intCls]) {
                 temp = [temp stringByAppendingFormat:@"///\n@property (nonatomic, assign) NSInteger %@;\n", key];
             } else if ([v isKindOfClass:NSDictionary.class]) {
-                temp = [temp stringByAppendingFormat:@"///\n@property (nonatomic, strong) <#Class#> %@;\n", key];
+                temp = [temp stringByAppendingFormat:@"///\n@property (nonatomic, strong) <#Class#> *%@;\n", key];
             } else if ([v isKindOfClass:NSArray.class]) {
                 temp = [temp stringByAppendingFormat:@"///\n@property (nonatomic, copy) NSArray<<#Class *#>> *%@;\n", key];
             } else {
